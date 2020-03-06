@@ -14,22 +14,14 @@ Ejemplo:
 > - 05 de tipo Alfanumérico de largo 11 y valor AB398765UJ1
 > - 23 de tipo Numérico de largo 2 y valor 00
 
-## Especificaciones
-A continuación las especificaciones de la función.
-- Debe recibir como argumento un arreglo de bytes el cual contiene el TLV.
-- La función retorna 2 valores, el primero es un map con los valores de los campos TLV y el segundo es un error.
-- Los escenarios de error son:
-	- Si la entrada esta vacia.
-	- Si algún campo no cumple con el tipo de  dato especificado.
-	- Y cualquier otro caso borde que sea identificado.
+# Compilar y ejecutar
+- cd falabella_test1
+- go install
+- cd ..
+- go build main.go
+- ./main.go
 
-## Requisitos
-Entregar un repositorio con el código el cual debe cumplir con lo siguiente:
- - Cobertura de 80% del código
- - CI/CD (puedes utilizar cualquier servicio gratuito como travis o circle)
- - Escribir código limpio suma puntos!
- - Incluir un **readme** con instrucciones para compilar, como utilizar y link al CI.
-
- 
-
-
+# Test
+- cd falabella_test1
+- go test -coverprofile=coverage.out
+- go tool cover -html=coverage.out (consultar coverage)
