@@ -2,7 +2,7 @@ package main
 
 import (
   "fmt"
-  "github.com/iara.alfaro/test-1/falabella_test1"
+  "github.com/iaraalfarolutz/test-1/falabella_test1"
 )
 
 func main(){

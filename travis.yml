@@ -1,0 +1,10 @@
+language: go
+
+go:
+ - 1.x
+
+before_script:
+  - cd falabella_test1
+
+script:
+  - go test
