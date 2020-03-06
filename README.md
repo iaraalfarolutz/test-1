@@ -25,3 +25,11 @@ Ejemplo:
 - cd falabella_test1
 - go test -coverprofile=coverage.out
 - go tool cover -html=coverage.out (consultar coverage)
+
+# CI/CD
+- Hacer fork del proyecto.
+- Ingresar a travis-ci.com e ingresar con Github.
+- Aceptar la autorización de Travis.
+- En el dashboard de Travis, seleccionar tu foto de perfil arriba en la derecha.
+- Clickear el boton verde "Activate" y seleccionar el repo.
+- Correr el job.
