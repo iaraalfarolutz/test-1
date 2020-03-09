@@ -19,7 +19,7 @@ Ejemplo:
 - go install
 - cd ..
 - go build main.go
-- ./main.go
+- ./main
 
 # Test
 - cd falabella_test1
