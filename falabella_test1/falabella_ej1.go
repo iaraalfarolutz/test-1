@@ -13,9 +13,7 @@ var validValueTypes = map[string]string{
 	"N": "^[0-9]+$",
 }
 
-type InputError struct {
-	S string
-}
+type InputError struct{ S string }
 
 func (e InputError) Error() string {
 	return "The input provided is not valid: " + e.S
@@ -25,7 +23,8 @@ func (e InputError) Error() string {
 func checkInputErrors(fields []byte) error {
 	if len(fields) == 0 {
 		return InputError{"The input cant be empty"}
-	} else if len(fields) < LENGHTOFFSET {
+	}
+	if len(fields) < LENGHTOFFSET {
 		return InputError{"The input must provide at least the first 2 fields even if the value is empty"}
 	}
 	return nil
@@ -35,9 +34,8 @@ func checkInputErrors(fields []byte) error {
 func checkIndexInRange(fields []byte, offset int) (bool, error) {
 	if len(fields) < offset {
 		return true, InputError{"Index out of range"}
-	} else {
-		return false, nil
 	}
+	return false, nil
 }
 
 //it returns the field type checking the first letter is correct
@@ -74,9 +72,8 @@ func getValue(fields []byte, index int, lenght int, fieldType string) (string, e
 	match, _ := regexp.MatchString(validValueTypes[fieldType], value)
 	if !match {
 		return value, InputError{"The value must match the value type defined on the first field"}
-	} else {
-		return value, nil
 	}
+	return value, nil
 }
 
 func ToMap(fields []byte) (map[string]string, error) {
@@ -88,20 +85,19 @@ func ToMap(fields []byte) (map[string]string, error) {
 
 	if err != nil {
 		return resultMap, err
-	} else {
-		for index < len(fields) {
-			if key, err = getType(fields, index); err != nil {
-				return resultMap, err
-			}
-			if lenght, err = getLenght(fields, index); err != nil {
-				return resultMap, err
-			}
-			if value, err = getValue(fields, index, lenght, string(key[0])); err != nil {
-				return resultMap, err
-			}
-			index += LENGHTOFFSET + lenght
-			resultMap[key] = value
-		}
-		return resultMap, err
 	}
+	for index < len(fields) {
+		if key, err = getType(fields, index); err != nil {
+			return resultMap, err
+		}
+		if lenght, err = getLenght(fields, index); err != nil {
+			return resultMap, err
+		}
+		if value, err = getValue(fields, index, lenght, string(key[0])); err != nil {
+			return resultMap, err
+		}
+		index += LENGHTOFFSET + lenght
+		resultMap[key] = value
+	}
+	return resultMap, err
 }
